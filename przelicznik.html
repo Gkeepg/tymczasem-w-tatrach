@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona o Górach</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa;
+        }
+        header {
+            background-image: url('https://example.com/path-to-mountain-image.jpg');
+            background-size: cover;
+            background-position: center;
+            color: rgb(17, 48, 121);
+            padding: 60px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #00796b;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #004d40;
+        }
+        main {
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #004d40;
+            color: white;
+        }
+        canvas {
+            display: block;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>"Tymczasem w Tatrach"</h1>
+    <div id="datetime">
+        <span id="date"></span>
+        <span id="time"></span>
+    <nav>
+        <li><a href="index.html">Strona Główna</a></li>
+                <li><a href="about.html">O Górach</a></li>
+                <li><a href="trails.html">Pogoda</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+                <li><a href="przelicznik.html">Przelicznik</a></li>
+                <li><a href="tabela.html">Tabela</a></li>
+                <li><a href="canvas.html">Rysunek</a></li>
+                <li><a href="wykres.html">Wykres</a></li>
+                <li><a href="slajd.html">Slajd</a></li>
+                <li><a href="index1.html">Formularz kontaktowy</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="map.html">Mapa</a></li>
+</nav>
+</header>
+
+
+
+<main>
+    <section>
+        <h2>Przelicznik Trudności Szlaku Górskiego</h2>
+        <form id="converterForm">
+            <label for="length">Długość szlaku (km):</label>
+            <input type="number" id="length" name="length" required><br><br>
+
+            <label for="elevation">Przewyższenie (m):</label>
+            <input type="number" id="elevation" name="elevation" required><br><br>
+
+            <label for="time">Czas przejścia (godziny):</label>
+            <input type="number" id="time" name="time" required><br><br>
+
+            <label for="technicalDifficulty">Trudność techniczna (1-10):</label>
+            <input type="number" id="technicalDifficulty" name="technicalDifficulty" min="1" max="10" required><br><br>
+
+            <button type="button" onclick="calculateDifficulty()">Oblicz wskaźnik trudności</button>
+        </form>
+        <h3>Wynik:</h3>
+        <p id="result"></p>
+    </section>
+
+    <section>
+        <h2>Wykres Wskaźnika Trudności Szlaku</h2>
+        <canvas id="difficultyChart" width="400" height="400"></canvas>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Tymczasem w Tatrach</p>
+    <p>Imię i nazwisko: Grzegorz Świercz</p>
+    <p>Numer indeksu: 157677</p>
+    <p>Projekt strony internetowej wykonany w ramach zaliczenia przedmiotu MO: TIiSKwE na kierunku Energetyka.</p>
+    <div id="visitCounter">Odwiedzin: <span id="visitCount"></span></div>
+    <div id="timeSpent">Czas spędzony na stronie: <span id="timeOnPage"></span> sekund</div>
+</footer>
+
+<script>
+    function calculateDifficulty() {
+        const length = parseFloat(document.getElementById('length').value);
+        const elevation = parseFloat(document.getElementById('elevation').value);
+        const time = parseFloat(document.getElementById('time').value);
+        const technicalDifficulty = parseFloat(document.getElementById('technicalDifficulty').value);
+
+        const difficultyIndex = (length * 0.3) + (elevation * 0.4) + (time * 0.2) + (technicalDifficulty * 0.1);
+        document.getElementById('result').innerText = `Wskaźnik trudności szlaku wynosi: ${difficultyIndex.toFixed(2)}`;
+
+        drawChart(difficultyIndex);
+    }
+
+    function drawChart(difficultyIndex) {
+        const ctx = document.getElementById('difficultyChart').getContext('2d');
+        ctx.clearRect(0, 0, 400, 400);
+
+        const data = {
+            labels: ['Długość', 'Przewyższenie', 'Czas', 'Trudność techniczna'],
+            datasets: [{
+                label: 'Wskaźnik Trudności Szlaku',
+                data: [30, 40, 20, 10],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        function updateTime() {
+            const now = new Date();
+            const date = now.toLocaleDateString('pl-PL');
+            const time = now.toLocaleTimeString('pl-PL');
+            document.getElementById('date').textContent = date;
+            document.getElementById('time').textContent = time;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        let visitCount = localStorage.getItem('visitCount');
+    if (!visitCount) {
+        visitCount = 1;
+    } else {
+        visitCount = parseInt(visitCount) + 1;
+    }
+    localStorage.setItem('visitCount', visitCount);
+    document.getElementById('visitCount').textContent = visitCount;
+
+    
+    let timeOnPage = parseInt(sessionStorage.getItem('timeOnPage')) || 0;
+    setInterval(() => {
+        timeOnPage += 1;
+        sessionStorage.setItem('timeOnPage', timeOnPage);
+        document.getElementById('timeOnPage').textContent = timeOnPage;
+    }, 1000);
+});
+</script>
+</body>
+</html>

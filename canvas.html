@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"Tymczasem w Tatrach"</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #e0f7fa;
+        }
+        header {
+            background-image: url('https://example.com/path-to-mountain-image.jpg');
+            background-size: cover;
+            background-position: center;
+            color:rgb(17, 48, 121);
+            padding: 60px 0;
+            text-align: center;
+            width: 100%;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #00796b;
+            width: 100%;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #004d40;
+        }
+        .toolbar {
+            margin: 20px;
+        }
+        .toolbar button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        canvas {
+            border: 1px solid #000;
+            margin-top: 20px;
+            background-color: #ffffff;
+        }
+    
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #004d40;
+            color: white;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>"Tymczasem w Tatrach"</h1>
+    <div id="datetime">
+        <span id="date"></span>
+        <span id="time"></span>
+</header>
+
+<nav>
+    <li><a href="index.html">Strona Główna</a></li>
+                <li><a href="about.html">O Górach</a></li>
+                <li><a href="trails.html">Pogoda</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+                <li><a href="przelicznik.html">Przelicznik</a></li>
+                <li><a href="tabela.html">Tabela</a></li>
+                <li><a href="canvas.html">Rysunek</a></li>
+                <li><a href="wykres.html">Wykres</a></li>
+                <li><a href="slajd.html">Slajd</a></li>
+                <li><a href="index1.html">Formularz kontaktowy</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="map.html">Mapa</a></li>
+</nav>
+
+<div class="toolbar">
+    <button onclick="setTool('line')">Linia</button>
+    <button onclick="setTool('curve')">Krzywa</button>
+    <button onclick="setTool('circle')">Okrąg</button>
+    <button onclick="setTool('square')">Kwadrat</button>
+    <button onclick="setTool('eraser')">Gumka</button>
+    <button onclick="clearCanvas()">Wyczyść</button>
+</div>
+
+<canvas id="drawingCanvas" width="800" height="600"></canvas>
+
+<footer>
+    <p>&copy; 2024 Tymczasem w Tatrach</p>
+    <p>Imię i nazwisko: Grzegorz Świercz</p>
+    <p>Numer indeksu: 157677</p>
+    <p>Projekt strony internetowej wykonany w ramach zaliczenia przedmiotu MO: TIiSKwE na kierunku Energetyka.</p>
+    <div id="visitCounter">Odwiedzin: <span id="visitCount"></span></div>
+<div id="timeSpent">Czas spędzony na stronie: <span id="timeOnPage"></span> sekund</div>
+</footer>
+
+<script>
+    const canvas = document.getElementById('drawingCanvas');
+    const ctx = canvas.getContext('2d');
+    let tool = 'line';
+    let drawing = false;
+    let startX, startY;
+    let isErasing = false;
+    let points = [];
+
+    function setTool(selectedTool) {
+        tool = selectedTool;
+        isErasing = (tool === 'eraser');
+    }
+
+    function clearCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    canvas.addEventListener('mousedown', (e) => {
+        drawing = true;
+        startX = e.offsetX;
+        startY = e.offsetY;
+        if (tool === 'curve') {
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+        }
+    });
+
+    canvas.addEventListener('mouseup', (e) => {
+        if (!drawing) return;
+        drawing = false;
+        const endX = e.offsetX;
+        const endY = e.offsetY;
+
+        if (tool !== 'curve') {
+            ctx.beginPath();
+        }
+
+        switch (tool) {
+            case 'line':
+                ctx.moveTo(startX, startY);
+                ctx.lineTo(endX, endY);
+                ctx.stroke();
+                break;
+            case 'curve':
+                ctx.lineTo(endX, endY);
+                ctx.stroke();
+                ctx.closePath();
+                break;
+            case 'circle':
+                const radius = Math.sqrt(Math.pow((endX - startX), 2) + Math.pow((endY - startY), 2));
+                ctx.arc(startX, startY, radius, 0, 2 * Math.PI);
+                ctx.stroke();
+                break;
+            case 'square':
+                const size = Math.max(Math.abs(endX - startX), Math.abs(endY - startY));
+                ctx.rect(startX, startY, size, size);
+                ctx.stroke();
+                break;
+        }
+        if (tool !== 'curve') {
+            ctx.closePath();
+        }
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+        if (!drawing) return;
+        if (isErasing) {
+            const endX = e.offsetX;
+            const endY = e.offsetY;
+            ctx.clearRect(endX, endY, 10, 10);
+        } else if (tool === 'curve') {
+            const endX = e.offsetX;
+            const endY = e.offsetY;
+            ctx.lineTo(endX, endY);
+            ctx.stroke();
+        }
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        function updateTime() {
+            const now = new Date();
+            const date = now.toLocaleDateString('pl-PL');
+            const time = now.toLocaleTimeString('pl-PL');
+            document.getElementById('date').textContent = date;
+            document.getElementById('time').textContent = time;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        let visitCount = localStorage.getItem('visitCount');
+    if (!visitCount) {
+        visitCount = 1;
+    } else {
+        visitCount = parseInt(visitCount) + 1;
+    }
+    localStorage.setItem('visitCount', visitCount);
+    document.getElementById('visitCount').textContent = visitCount;
+
+    
+    let timeOnPage = parseInt(sessionStorage.getItem('timeOnPage')) || 0;
+    setInterval(() => {
+        timeOnPage += 1;
+        sessionStorage.setItem('timeOnPage', timeOnPage);
+        document.getElementById('timeOnPage').textContent = timeOnPage;
+    }, 1000);
+});
+</script>
+
+</body>
+</html>

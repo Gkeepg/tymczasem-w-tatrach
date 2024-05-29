@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona o Górach</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa;
+        }
+        header {
+            background-image: url('https://example.com/path-to-mountain-image.jpg');
+            background-size: cover;
+            background-position: center;
+            color: rgb(17, 48, 121);
+            padding: 60px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #00796b;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #004d40;
+        }
+        main {
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #004d40;
+            color: white;
+        }
+        #canvasContainer {
+            text-align: center;
+            margin: 20px 0;
+        }
+        canvas {
+            border: 1px solid #00796b;
+            background-color: #fff;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input, select {
+            margin: 5px;
+            padding: 10px;
+            width: 200px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>"Tymczasem w Tatrach"</h1>
+    <div id="datetime">
+        <span id="date"></span>
+        <span id="time"></span>
+</header>
+
+<nav>
+    <li><a href="index.html">Strona Główna</a></li>
+    <li><a href="about.html">O Górach</a></li>
+    <li><a href="trails.html">Pogoda</a></li>
+    <li><a href="contact.html">Kontakt</a></li>
+    <li><a href="przelicznik.html">Przelicznik</a></li>
+    <li><a href="tabela.html">Tabela</a></li>
+    <li><a href="canvas.html">Rysunek</a></li>
+    <li><a href="wykres.html">Wykres</a></li>
+    <li><a href="slajd.html">Slajd</a></li>
+    <li><a href="index1.html">Formularz kontaktowy</a></li>
+    <li><a href="galeria.html">Galeria</a></li>
+    <li><a href="map.html">Mapa</a></li>
+</nav>
+
+<main>
+    <section>
+        <h2>Przelicznik Nachylenia Szlaku Górskiego</h2>
+        <form id="trailForm">
+            <label for="trailLength">Długość szlaku (km):</label>
+            <input type="number" id="trailLength" name="trailLength" step="0.01" required>
+            
+            <label for="elevationGain">Różnica wysokości (m):</label>
+            <input type="number" id="elevationGain" name="elevationGain" step="0.01" required>
+            
+            <label for="trailName">Nazwa szlaku:</label>
+            <input type="text" id="trailName" name="trailName" required>
+            
+            <label for="trailType">Typ szlaku:</label>
+            <select id="trailType" name="trailType">
+                <option value="łatwy">Łatwy</option>
+                <option value="średni">Średni</option>
+                <option value="trudny">Trudny</option>
+            </select>
+            
+            <label for="trailSeason">Sezon:</label>
+            <input type="text" id="trailSeason" name="trailSeason">
+            
+            <label for="trailDescription">Opis szlaku:</label>
+            <textarea id="trailDescription" name="trailDescription"></textarea>
+            
+            <button type="submit">Oblicz nachylenie</button>
+        </form>
+    </section>
+
+    <section id="canvasContainer">
+        <h2>Wykres Nachylenia Szlaków</h2>
+        <canvas id="trailCanvas" width="800" height="600"></canvas>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Tymczasem w Tatrach</p>
+    <p>Imię i nazwisko: Grzegorz Świercz</p>
+    <p>Numer indeksu: 157677</p>
+    <p>Projekt strony internetowej wykonany w ramach zaliczenia przedmiotu MO: TIiSKwE na kierunku Energetyka.</p>
+    <div id="visitCounter">Odwiedzin: <span id="visitCount"></span></div>
+    <div id="timeSpent">Czas spędzony na stronie: <span id="timeOnPage"></span> sekund</div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('trailForm');
+        const canvas = document.getElementById('trailCanvas');
+        const ctx = canvas.getContext('2d');
+        let trails = [];
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            
+            const trailLength = parseFloat(document.getElementById('trailLength').value);
+            const elevationGain = parseFloat(document.getElementById('elevationGain').value);
+            const trailName = document.getElementById('trailName').value;
+            const trailType = document.getElementById('trailType').value;
+            const trailSeason = document.getElementById('trailSeason').value;
+            const trailDescription = document.getElementById('trailDescription').value;
+            
+            const slope = (elevationGain / (trailLength * 1000)) * 100;
+            
+            trails.push({
+                name: trailName,
+                length: trailLength,
+                elevation: elevationGain,
+                slope: slope,
+                type: trailType,
+                season: trailSeason,
+                description: trailDescription
+            });
+            
+            drawChart();
+        });
+
+        function drawChart() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const maxSlope = Math.max(...trails.map(t => t.slope)) * 1.1;
+            
+            trails.forEach((trail, index) => {
+                const barWidth = canvas.width / trails.length - 20;
+                const barHeight = (trail.slope / maxSlope) * canvas.height;
+                const x = index * (barWidth + 20);
+                const y = canvas.height - barHeight;
+                
+                ctx.fillStyle = '#00796b';
+                ctx.fillRect(x, y, barWidth, barHeight);
+                
+                ctx.fillStyle = '#000';
+                ctx.fillText(trail.name, x, y - 10);
+                ctx.fillText(`${trail.slope.toFixed(2)}%`, x, y - 25);
+            });
+        }
+    });
+</script>
+
+<script>
+
+   
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        function updateTime() {
+            const now = new Date();
+            const date = now.toLocaleDateString('pl-PL');
+            const time = now.toLocaleTimeString('pl-PL');
+            document.getElementById('date').textContent = date;
+            document.getElementById('time').textContent = time;
+        }
+        setInterval(updateTime, 1000);
+        updateTime(); 
+
+        let visitCount = localStorage.getItem('visitCount');
+        if (!visitCount) {
+            visitCount = 1;
+        } else {
+            visitCount = parseInt(visitCount) + 1;
+        }
+        localStorage.setItem('visitCount', visitCount);
+        document.getElementById('visitCount').textContent = visitCount;
+
+        
+        let timeOnPage = parseInt(sessionStorage.getItem('timeOnPage')) || 0;
+        setInterval(() => {
+            timeOnPage += 1;
+            sessionStorage.setItem('timeOnPage', timeOnPage);
+            document.getElementById('timeOnPage').textContent = timeOnPage;
+        }, 1000);
+    });
+        </script>
+
+</body>
+</html>

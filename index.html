@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tymczasem w Tatrach</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    
+</head>
+<body>
+    <header>
+        <h1>"Tymczasem w Tatrach"</h1>
+        <div id="datetime">
+            <span id="date"></span>
+            <span id="time"></span>
+        <nav>
+            <ul id="menu">
+                <li><a href="index.html">Strona Główna</a></li>
+                <li><a href="about.html">O Górach</a></li>
+                <li><a href="trails.html">Pogoda</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+                <li><a href="przelicznik.html">Przelicznik</a></li>
+                <li><a href="tabela.html">Tabela</a></li>
+                <li><a href="canvas.html">Rysunek</a></li>
+                <li><a href="wykres.html">Wykres</a></li>
+                <li><a href="slajd.html">Slajd</a></li>
+                <li><a href="index1.html">Formularz kontaktowy</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="map.html">Mapa</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>"Tymczasem w Tatrach"</h1>
+        
+        <h2>Hello, cześć, witam na stronie poświęconej Tatrom. Będziemy razem zaciekle się rozwijać i zapoznawać w tematyce pięknych i zapierających dech w piersiach górach, jakimi są Tatry.</h2>
+    
+        <p>Zanim przejdziemy dalej do poznawania i zakochania się w górach niezapomnianie, muszę zapozanć Cię z podstawowymi informacjami związanymi z Tatrami:</p>
+        <ul>
+
+            <li>Powierzchnia całości Tatr to 785 km2, w tym Polska ma 175km2</li>
+            <li>W linii prostej dwa skrajne punkty w Tatrach, Przełęcz Huciańską i Zdziarską, dzieli 51,5 km</li>
+            <li>Jeśli policzyć szerokość Tatr w prostej linii z południa na północ, to w najszerszym miejscu odległość ta wyniesie 18,5 km</li>
+            <li>Łączna długość znakowanych szlaków po polskiej stronie Tatr to 275 km</li>
+            <li>Łączna liczba wszystkich schronisk w Tatrach to 22, w tym polskich 7</li>
+            <li>Łączna liczba szczytów na głównej grani Tatr wynosi 97</li>
+            <li>W Tatrach znakowanymi szlakami można wejść na około 100 szczytów</li>
+            <li>W Tatrach polskich znajduje się 10 szczytów o wysokości większej niż 2300 m</li>
+            <li> Liczba tatrzańskich szczytów wyższych niż Rysy wynosi 27</li>
+            <li>Głowna grań Tatr Zachodnich ma długość 29 km</li>
+            <li>Szlak Orla Perć uważany jest za najtrudniejszy i najniebezpieczniejszy w Tatrach i całej Polsce</li>
+            <li>Szlak na Rusinową Polanę należy do jednych z najłatwiejszych w Tatrach</li>
+            
+        </ul>
+
+    </main>
+
+   
+   
+    
+    </body>
+    <footer>
+        <p>&copy; 2024 Tymczasem w Tatrach</p>
+       <p>Imię i nazwisko: Grzegorz Świercz</p>
+        <p>Numer indeksu: 157677</p>
+        <p>Projekt strony internetowej wykonany w ramach zaliczenia przedmiotu MO: TIiSKwE na kierunku Energetyka.</p>
+        <div id="visitCounter">Odwiedzin: <span id="visitCount"></span></div>
+    <div id="timeSpent">Czas spędzony na stronie: <span id="timeOnPage"></span> sekund</div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+           
+            function updateTime() {
+                const now = new Date();
+                const date = now.toLocaleDateString('pl-PL');
+                const time = now.toLocaleTimeString('pl-PL');
+                document.getElementById('date').textContent = date;
+                document.getElementById('time').textContent = time;
+            }
+            setInterval(updateTime, 1000);
+            updateTime();
+
+            let visitCount = localStorage.getItem('visitCount');
+        if (!visitCount) {
+            visitCount = 1;
+        } else {
+            visitCount = parseInt(visitCount) + 1;
+        }
+        localStorage.setItem('visitCount', visitCount);
+        document.getElementById('visitCount').textContent = visitCount;
+
+        
+        let timeOnPage = parseInt(sessionStorage.getItem('timeOnPage')) || 0;
+        setInterval(() => {
+            timeOnPage += 1;
+            sessionStorage.setItem('timeOnPage', timeOnPage);
+            document.getElementById('timeOnPage').textContent = timeOnPage;
+        }, 1000);
+    });
+</script>
+</body>
+</html>
+
+
+
+

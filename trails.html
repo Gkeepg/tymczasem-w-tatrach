@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pogoda</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>"Tymczasem w Tatrach"</h1>
+        
+            
+            <div id="datetime">
+                <span id="date"></span>
+                <span id="time"></span>
+         </div>
+         
+           
+        <nav>
+            <ul id="menu">
+                <li><a href="index.html">Strona Główna</a></li>
+                <li><a href="about.html">O Górach</a></li>
+                <li><a href="trails.html">Pogoda</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+                <li><a href="przelicznik.html">Przelicznik</a></li>
+                <li><a href="tabela.html">Tabela</a></li>
+                <li><a href="canvas.html">Rysunek</a></li>
+                <li><a href="wykres.html">Wykres</a></li>
+                <li><a href="slajd.html">Slajd</a></li>
+                <li><a href="index1.html">Formularz kontaktowy</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="map.html">Mapa</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Pogoda w Tatrach</h1>
+       <h2>Wiosna (marzec - maj)</h2>
+      <p>Pogoda: Wiosna w Tatrach zaczyna się chłodno i wilgotno. Śnieg topnieje, ale w wyższych partiach gór często utrzymuje się do maja. W marcu i kwietniu mogą występować przymrozki i opady śniegu, szczególnie na wyższych wysokościach. W maju temperatura zaczyna się podnosić, a krajobraz staje się bardziej zielony.</p> 
+<p>Temperatura: W dolinach średnie temperatury wahają się od 0°C do 10°C w marcu i od 5°C do 15°C w maju. W wyższych partiach gór temperatury mogą być znacznie niższe.</p>
+<p>Atrakcje: Wiosna to czas, gdy przyroda budzi się do życia. To idealny okres na piesze wędrówki w niższych partiach gór i dolinach, gdzie kwitną krokusy i inne wiosenne kwiaty.</p>
+        
+
+<h2>Lato (czerwiec - sierpień)</h2>
+<p>Pogoda: Lato to najcieplejsza i najbardziej stabilna pogodowo pora roku w Tatrach. Dni są długie i ciepłe, choć pogoda może być kapryśna z gwałtownymi burzami, szczególnie w godzinach popołudniowych. Temperatury są najwyższe w lipcu i sierpniu.</p>
+<p>Temperatura: W dolinach średnie temperatury wahają się od 15°C do 25°C. W wyższych partiach gór temperatury są niższe, ale mogą osiągnąć 20°C w słoneczne dni.</p>
+<p>Atrakcje: Lato to najlepszy czas na wspinaczki i długie wędrówki po szlakach turystycznych. Popularne trasy to m.in. szlak na Rysy, Giewont i Orla Perć. Lato to również idealny czas na uprawianie sportów wodnych w okolicznych jeziorach.</p>
+      
+
+<h2>Jesień (wrzesień - listopad)</h2>
+<p>Pogoda: Jesień w Tatrach zaczyna się ciepło i stabilnie, ale stopniowo staje się chłodniejsza i bardziej wilgotna. Wrzesień często oferuje piękne, słoneczne dni, znane jako "babie lato". Październik i listopad to czas, gdy temperatury spadają, a pogoda staje się bardziej nieprzewidywalna.</p>
+<p>Temperatura: W dolinach średnie temperatury wahają się od 10°C do 20°C we wrześniu, a od 0°C do 10°C w listopadzie. W wyższych partiach gór mogą występować przymrozki i opady śniegu już od października.</p>
+<p>Atrakcje: Jesień to idealny czas na podziwianie pięknych, kolorowych krajobrazów. To również dobry czas na wędrówki, choć trzeba być przygotowanym na zmienne warunki pogodowe. Widoki w październiku są spektakularne, zwłaszcza gdy drzewa zmieniają kolory.</p>
+
+
+<h2>Zima (grudzień - luty)</h2>
+<p>Pogoda: Zima w Tatrach jest surowa, z obfitymi opadami śniegu i niskimi temperaturami. Pogoda może być bardzo zmienna, a warunki mogą szybko stać się niebezpieczne, zwłaszcza na wyższych wysokościach.</p>
+<p>Temperatura: W dolinach średnie temperatury wahają się od -5°C do 0°C, ale mogą spaść poniżej -10°C. W wyższych partiach gór temperatury są znacznie niższe, często poniżej -20°C.</p>
+<p>Atrakcje: Zima to czas, gdy Tatry zamieniają się w raj dla miłośników sportów zimowych. Popularne są narciarstwo, snowboarding i wspinaczka lodowa. Znane ośrodki narciarskie to m.in. Zakopane i Kasprowy Wierch.
+</p>
+
+    </main>
+
+
+
+
+    <h2>Poniżej znajduje się relacja, obraz z kamer z teraźniejszych (rzeczywistych) warunków pogodowych w podanych miejscach w Tatrach:
+        <ul> 
+            <li> Morskie Oko</li>
+            <li> Dolina Pięciu Stawów Polskich</li>
+                <li>  Hala Gąsienicowa</li>
+                    <li> Kasprowy Wierch</li>
+                        <li> Dolina Chochołowska</li>
+                            <li> Czarna Góra</li>
+                                <li> Kościelisko</li>
+        </ul>
+    </h2>
+    
+  <section>
+        <button id="redirectBtn"><h1>AKTUALNE WARUNKI</h1></button>
+    </section>
+    <script>
+        document.getElementById('redirectBtn').addEventListener('click', function() {
+            window.location.href = 'https://pogoda.topr.pl/';
+        });
+    </script>
+    <footer>
+        <p>&copy; 2024 Tymczasem w Tatrach</p>
+        <p>Imię i nazwisko: Grzegorz Świercz</p>
+        <p>Numer indeksu: 157677</p>
+        <p>Projekt strony internetowej wykonany w ramach zaliczenia przedmiotu MO: TIiSKwE na kierunku Energetyka.</p>
+        <div id="visitCounter">Odwiedzin: <span id="visitCount"></span></div>
+    <div id="timeSpent">Czas spędzony na stronie: <span id="timeOnPage"></span> sekund</div>
+    </footer>
+
+    
+    <script>
+
+   
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            function updateTime() {
+                const now = new Date();
+                const date = now.toLocaleDateString('pl-PL');
+                const time = now.toLocaleTimeString('pl-PL');
+                document.getElementById('date').textContent = date;
+                document.getElementById('time').textContent = time;
+            }
+            setInterval(updateTime, 1000);
+            updateTime(); 
+    
+            let visitCount = localStorage.getItem('visitCount');
+            if (!visitCount) {
+                visitCount = 1;
+            } else {
+                visitCount = parseInt(visitCount) + 1;
+            }
+            localStorage.setItem('visitCount', visitCount);
+            document.getElementById('visitCount').textContent = visitCount;
+    
+        
+            let timeOnPage = parseInt(sessionStorage.getItem('timeOnPage')) || 0;
+            setInterval(() => {
+                timeOnPage += 1;
+                sessionStorage.setItem('timeOnPage', timeOnPage);
+                document.getElementById('timeOnPage').textContent = timeOnPage;
+            }, 1000);
+        });
+            </script>
+</body>
+</html>

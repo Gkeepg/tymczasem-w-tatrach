@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>"Tymczasem w Tatrach"</h1>
+        <div id="datetime">
+            <span id="date"></span>
+            <span id="time"></span>
+        <nav>
+            <ul id="menu">
+                <li><a href="index.html">Strona Główna</a></li>
+                <li><a href="about.html">O Górach</a></li>
+                <li><a href="trails.html">Pogoda</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+                <li><a href="przelicznik.html">Przelicznik</a></li>
+                <li><a href="tabela.html">Tabela</a></li>
+                <li><a href="canvas.html">Rysunek</a></li>
+                <li><a href="wykres.html">Wykres</a></li>
+                <li><a href="slajd.html">Slajd</a></li>
+                <li><a href="index1.html">Formularz kontaktowy</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="map.html">Mapa</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Kontakt</h2>
+        <p>Możesz się ze mną skontaktować poprzez e-mail: <a href="tymczasem_w_tatrach@interia.pl">tymczasem_w_tatrach@interia.pl</a></p>
+    </main>
+    <footer>
+        <p>&copy; 2024 Tymczasem w Tatrach</p>
+        <p>Imię i nazwisko: Grzegorz Świercz</p>
+        <p>Numer indeksu: 157677</p>
+        <p>Projekt strony internetowej wykonany w ramach zaliczenia przedmiotu MO: TIiSKwE na kierunku Energetyka.</p>
+        <div id="visitCounter">Odwiedzin: <span id="visitCount"></span></div>
+    <div id="timeSpent">Czas spędzony na stronie: <span id="timeOnPage"></span> sekund</div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            function updateTime() {
+                const now = new Date();
+                const date = now.toLocaleDateString('pl-PL');
+                const time = now.toLocaleTimeString('pl-PL');
+                document.getElementById('date').textContent = date;
+                document.getElementById('time').textContent = time;
+            }
+            setInterval(updateTime, 1000);
+            updateTime();
+
+            let visitCount = localStorage.getItem('visitCount');
+        if (!visitCount) {
+            visitCount = 1;
+        } else {
+            visitCount = parseInt(visitCount) + 1;
+        }
+        localStorage.setItem('visitCount', visitCount);
+        document.getElementById('visitCount').textContent = visitCount;
+
+        
+        let timeOnPage = parseInt(sessionStorage.getItem('timeOnPage')) || 0;
+        setInterval(() => {
+            timeOnPage += 1;
+            sessionStorage.setItem('timeOnPage', timeOnPage);
+            document.getElementById('timeOnPage').textContent = timeOnPage;
+        }, 1000);
+    });
+</script>
+</body>
+</html>

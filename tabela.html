@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona o Górach</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa;
+        }
+        header {
+            background-image: url('https://example.com/path-to-mountain-image.jpg');
+            background-size: cover;
+            background-position: center;
+            color:  rgb(17, 48, 121);
+            padding: 60px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #00796b;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #004d40;
+        }
+        main {
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #00796b;
+            color: white;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #004d40;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>"Tymczasem w Tatrach"</h1>
+    <div id="datetime">
+        <span id="date"></span>
+        <span id="time"></span>
+<nav>
+    <li><a href="index.html">Strona Główna</a></li>
+                <li><a href="about.html">O Górach</a></li>
+                <li><a href="trails.html">Pogoda</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+                <li><a href="przelicznik.html">Przelicznik</a></li>
+                <li><a href="tabela.html">Tabela</a></li>
+                <li><a href="canvas.html">Rysunek</a></li>
+                <li><a href="wykres.html">Wykres</a></li>
+                <li><a href="slajd.html">Slajd</a></li>
+                <li><a href="index1.html">Formularz kontaktowy</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="map.html">Mapa</a></li>
+</nav>
+</header>
+
+
+<main>
+    <section>
+        <h2>TATRY WYSOKIE</h2>
+        
+        <p> "*"- poziom trudności w skali 1-5</p>
+        <table id="mountainTable">
+            <thead>
+                <tr>
+                    <th>Nr</th>
+                    <th>Nazwa Szlaku</th>
+                    <th>Długość (km)</th>
+                    <th>Wysokość (m.n.p.m)</th>
+                    <th>Trudność</th>
+                    <th colspan="2">Czas trwania</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </section>
+</main>
+
+
+<main>
+    <section>
+        <h2>TATRY ZACHODNIE</h2>
+        
+        <p> "*"- poziom trudności w skali 1-5</p>
+        <table id="mountainTabl">
+            <thead>
+                <tr>
+                    <th>Nr</th>
+                    <th>Nazwa Szlaku</th>
+                    <th>Długość (km)</th>
+                    <th>Wysokość (m.n.p.m)</th>
+                    <th>Trudność</th>
+                    <th colspan="2">Czas trwania</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </section>
+</main>
+
+
+<footer>
+    <p>&copy; 2024 Tymczasem w Tatrach</p>
+    <p>Imię i nazwisko: Grzegorz Świercz</p>
+    <p>Numer indeksu: 157677</p>
+    <p>Projekt strony internetowej wykonany w ramach zaliczenia przedmiotu MO: TIiSKwE na kierunku Energetyka.</p>
+    <div id="visitCounter">Odwiedzin: <span id="visitCount"></span></div>
+<div id="timeSpent">Czas spędzony na stronie: <span id="timeOnPage"></span> sekund</div>
+</footer>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const trails = [
+            { nr: 1, name: 'Szlak na Rysy', length: 10, height: 2501, difficulty: '****', time: '6h' },
+            { nr: 2, name: 'Szlak na Kozi Wierch', length: 8, height: 2291, difficulty: '**', time: '4.5h' },
+            { nr: 3, name: 'Szlak na Świnicę', length: 15, height: 2301, difficulty: '****', time: '5h' },
+            { nr: 4, name: 'Szlak na Przełęcz pod Chłopkiem', length: 11.5, height: 2308, difficulty: '****', time: '6.2h' }, 
+            { nr: 5, name: 'Szlak na Kościelec ', length: 13, height: 2155, difficulty: '****', time: '4.5h' },   
+            { nr: 6, name: 'Szlak na Orlą Perć – od przełęczy Zawrat do Koziego Wierchu', length: 1.5, height: 2159, difficulty: '*****', time: '2.15h' },       
+        ];
+
+        const tbody = document.querySelector('#mountainTable tbody');
+
+        trails.forEach((trail, index) => {
+            const tr = document.createElement('tr');
+
+            const tdNr = document.createElement('td');
+            tdNr.textContent = trail.nr;
+            tr.appendChild(tdNr);
+
+            const tdName = document.createElement('td');
+            tdName.textContent = trail.name;
+            tr.appendChild(tdName);
+
+            const tdLength = document.createElement('td');
+            tdLength.textContent = trail.length;
+            tr.appendChild(tdLength);
+
+            const tdHeight = document.createElement('td');
+            tdHeight.textContent = trail.height;
+            tr.appendChild(tdHeight);
+
+            const tdDifficulty = document.createElement('td');
+            tdDifficulty.textContent = trail.difficulty;
+            tr.appendChild(tdDifficulty);
+
+            const tdTime = document.createElement('td');
+            tdTime.textContent = trail.time;
+            tdTime.setAttribute('colspan', 2);
+            tr.appendChild(tdTime);
+
+            tbody.appendChild(tr);
+        });
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const trails = [
+            { nr: 1, name: 'Szlak na Giewont przez Dolinę Małej Łąki', length: 7, height: 1895, difficulty: '***', time: '3h' },
+            { nr: 2, name: 'Szlak na Grzesia, Rakoń i Wołowiec z Polany Chochołowskiej', length: 7.2, height: 1876, difficulty: '**', time: '3.2h' },
+            { nr: 3, name: 'Szlak na Starorobociański Wierch z Siwej Polany przez Siwą Przełęcz', length: 12.5, height: 2176, difficulty: '**', time: '4.5' },
+            { nr: 4, name: 'Szlak- Czerwone wierchy', length: 2.9, height: 2122, difficulty: '**', time: '6.5h' }, 
+            { nr: 5, name: 'Szlak na Kasprowy Wierch z Kuźnic ', length: 7.5, height: 2155, difficulty: '****', time: '4.5h' },   
+            { nr: 6, name: 'Szlak na Sarnią Skałę z Czerwonej Przełęczy', length: 0.5, height: 1378, difficulty: '*', time: '10min' },        
+        ];
+
+        const tbody = document.querySelector('#mountainTabl tbody');
+
+        trails.forEach((trail, index) => {
+            const tr = document.createElement('tr');
+
+            const tdNr = document.createElement('td');
+            tdNr.textContent = trail.nr;
+            tr.appendChild(tdNr);
+
+            const tdName = document.createElement('td');
+            tdName.textContent = trail.name;
+            tr.appendChild(tdName);
+
+            const tdLength = document.createElement('td');
+            tdLength.textContent = trail.length;
+            tr.appendChild(tdLength);
+
+            const tdHeight = document.createElement('td');
+            tdHeight.textContent = trail.height;
+            tr.appendChild(tdHeight);
+
+            const tdDifficulty = document.createElement('td');
+            tdDifficulty.textContent = trail.difficulty;
+            tr.appendChild(tdDifficulty);
+
+            const tdTime = document.createElement('td');
+            tdTime.textContent = trail.time;
+            tdTime.setAttribute('colspan', 2);
+            tr.appendChild(tdTime);
+
+            tbody.appendChild(tr);
+        });
+    });
+</script>
+
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        function updateTime() {
+            const now = new Date();
+            const date = now.toLocaleDateString('pl-PL');
+            const time = now.toLocaleTimeString('pl-PL');
+            document.getElementById('date').textContent = date;
+            document.getElementById('time').textContent = time;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        let visitCount = localStorage.getItem('visitCount');
+    if (!visitCount) {
+        visitCount = 1;
+    } else {
+        visitCount = parseInt(visitCount) + 1;
+    }
+    localStorage.setItem('visitCount', visitCount);
+    document.getElementById('visitCount').textContent = visitCount;
+
+    
+    let timeOnPage = parseInt(sessionStorage.getItem('timeOnPage')) || 0;
+    setInterval(() => {
+        timeOnPage += 1;
+        sessionStorage.setItem('timeOnPage', timeOnPage);
+        document.getElementById('timeOnPage').textContent = timeOnPage;
+    }, 1000);
+});
+</script>
+
+
+
+</body>
+</html>

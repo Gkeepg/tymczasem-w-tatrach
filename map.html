@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tymczasem w Tatrach</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa;
+        }
+        header {
+            background-image: url('https://example.com/path-to-mountain-image.jpg');
+            background-size: cover;
+            background-position: center;
+            color:rgb(17, 48, 121);
+            padding: 60px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #00796b;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #004d40;
+        }
+        main {
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #004d40;
+            color: white;
+        }
+        #mapContainer {
+            text-align: center;
+            margin: 20px 0;
+        }
+        #mountainMap {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>"Tymczasem w Tatrach"</h1>
+    <div id="datetime">
+        <span id="date"></span>
+        <span id="time"></span>
+        
+        <nav>
+    
+    
+    <li><a href="index.html">Strona Główna</a></li>
+    <li><a href="about.html">O Górach</a></li>
+    <li><a href="trails.html">Pogoda</a></li>
+    <li><a href="contact.html">Kontakt</a></li>
+    <li><a href="przelicznik.html">Przelicznik</a></li>
+    <li><a href="tabela.html">Tabela</a></li>
+    <li><a href="canvas.html">Rysunek</a></li>
+    <li><a href="wykres.html">Wykres</a></li>
+    <li><a href="slajd.html">Slajd</a></li>
+    <li><a href="index1.html">Formularz kontaktowy</a></li>
+    <li><a href="galeria.html">Galeria</a></li>
+    <li><a href="map.html">Mapa</a></li>
+
+</nav>
+ </div>
+</header>
+
+
+
+<main>
+    <section>
+        <h2>Mapa Gór</h2>
+        <div id="mapContainer">
+            <img src="https://ksiegarnia-geograf.pl/public/upload/editor/TATRY20POLSKIE20KOMPAKTOWE20MAPA20SYGNATURA20201120CALOSC.jpg" alt="Mapa Gór" usemap="#mountainMap" id="mountainMap">
+            <map name="mountainMap">
+                <area shape="rect" coords="50,50,200,200" alt="DOLINA CHOCHOŁOWSKA" href="#" onclick="showInfo('DOLINA CHOCHOŁOWSKA- najdłuższa dolina w Tatrach')">
+                <area shape="circle" coords="330,250,50" alt="CZERWONE WIERCHY" href="#" onclick="showInfo('CZERWONE WIERCHY')">
+                <area shape="poly" coords="400,100,450,150,400,200,150,200" alt="DROGA NAD REGLAMI" href="#" onclick="showInfo('DROGA NAD REGLAMI')">
+                <area shape="rect" coords="100,300,250,450" alt="TATRY ZACHODNIE" href="#" onclick="showInfo('TATRY ZACHODNIE')">
+                <area shape="circle" coords="500,300,75" alt="TATRY WYSOKIE" href="#" onclick="showInfo('TATRY WYSOKIE- Morskie Oko, Dolina Pięciu Stawów Polskich')">
+            </map>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Tymczasem w Tatrach</p>
+    <p>Imię i nazwisko: Grzegorz Świercz</p>
+    <p>Numer indeksu: 157677</p>
+    <p>Projekt strony internetowej wykonany w ramach zaliczenia przedmiotu MO: TIiSKwE na kierunku Energetyka.</p>
+    <div id="visitCounter">Odwiedzin: <span id="visitCount"></span></div>
+    <div id="timeSpent">Czas spędzony na stronie: <span id="timeOnPage"></span> sekund</div>
+</footer>
+
+<script>
+    function showInfo(region) {
+        alert(  region);
+    }
+</script>
+
+<script>
+
+   
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        function updateTime() {
+            const now = new Date();
+            const date = now.toLocaleDateString('pl-PL');
+            const time = now.toLocaleTimeString('pl-PL');
+            document.getElementById('date').textContent = date;
+            document.getElementById('time').textContent = time;
+        }
+        setInterval(updateTime, 1000);
+        updateTime(); 
+
+        let visitCount = localStorage.getItem('visitCount');
+        if (!visitCount) {
+            visitCount = 1;
+        } else {
+            visitCount = parseInt(visitCount) + 1;
+        }
+        localStorage.setItem('visitCount', visitCount);
+        document.getElementById('visitCount').textContent = visitCount;
+
+        
+        let timeOnPage = parseInt(sessionStorage.getItem('timeOnPage')) || 0;
+        setInterval(() => {
+            timeOnPage += 1;
+            sessionStorage.setItem('timeOnPage', timeOnPage);
+            document.getElementById('timeOnPage').textContent = timeOnPage;
+        }, 1000);
+    });
+        </script>
+</body>
+</html>

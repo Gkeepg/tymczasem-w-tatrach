@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Górach</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>"Tymczasem w Tatrach"</h1>
+        <div id="datetime">
+            <span id="date"></span>
+            <span id="time"></span>
+        <nav>
+            <ul id="menu">
+                <li><a href="index.html">Strona Główna</a></li>
+                <li><a href="about.html">O Górach</a></li>
+                <li><a href="trails.html">Pogoda</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+                <li><a href="przelicznik.html">Przelicznik</a></li>
+                <li><a href="tabela.html">Tabela</a></li>
+                <li><a href="canvas.html">Rysunek</a></li>
+                <li><a href="wykres.html">Wykres</a></li>
+                <li><a href="slajd.html">Slajd</a></li>
+                <li><a href="index1.html">Formularz kontaktowy</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="map.html">Mapa</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>O GÓRACH TATRZAŃSKICH</h2>
+        <p>Góry Tatrzańskie, znane również jako Tatry, to najwyższa część Karpat, rozciągająca się na granicy Polski i Słowacji. Są to góry o wyjątkowym krajobrazie, które przyciągają turystów, wspinaczy i miłośników przyrody z całego świata. Tatry dzielą się na Tatry Wysokie i Tatry Zachodnie, a ich różnorodność przyrodnicza i geologiczna sprawia, że są one jednym z najważniejszych obszarów turystycznych w Europie Środkowej.</p>
+
+           <p> TATRY WYSOKIE:</p>
+            <p>Tatry Wysokie są znane z ostrych szczytów, głębokich dolin, licznych jezior (zwanych stawami) i wodospadów. Najwyższy szczyt Tatr Wysokich, a zarazem całych Karpat, to Gerlach (Gerlachovský štít) znajdujący się na Słowacji, który mierzy 2655 metrów n.p.m. W Polsce najwyższym szczytem jest Rysy, mające 2499 metrów n.p.m. Tatry Wysokie są również domem dla słynnych szlaków wspinaczkowych, takich jak Orla Perć, uważana za jeden z najtrudniejszych szlaków w Polsce.</p>
+            
+           <p>TATRY ZACHODNIE:</p> 
+           <p>Tatry Zachodnie charakteryzują się łagodniejszymi formami i rozległymi łąkami. Najwyższy szczyt Tatr Zachodnich to Bystra, która znajduje się po stronie słowackiej i mierzy 2248 metrów n.p.m. W Polsce najwyższym szczytem Tatr Zachodnich jest Starorobociański Wierch, mający 2176 metrów n.p.m. Tatry Zachodnie są idealnym miejscem dla rodzin i mniej doświadczonych turystów, oferując liczne łatwiejsze trasy piesze i rowerowe.</p> 
+            
+           <p>FAUNA I FLORA:</p> 
+           <p>Tatry są domem dla wielu unikalnych gatunków roślin i zwierząt. Można tu spotkać kozice, świstaki, niedźwiedzie brunatne, a także rzadkie gatunki ptaków, takie jak orzeł przedni. W Tatrach rośnie wiele endemicznych roślin, których nie spotka się nigdzie indziej na świecie. Obszar ten jest objęty ochroną w ramach Tatrzańskiego Parku Narodowego w Polsce oraz TANAP (Tatranský národný park) na Słowacji.</p>
+            
+           <p> TURYSTYKA I ATRAKCJE:</p>
+           <p>Tatry oferują szeroką gamę atrakcji turystycznych. Zakopane, nazywane zimową stolicą Polski, jest głównym ośrodkiem turystycznym po polskiej stronie Tatr. Znajdują się tu liczne hotele, pensjonaty, restauracje i wyciągi narciarskie. Popularne atrakcje w Tatrach to m.in. Morskie Oko, Dolina Kościeliska, Dolina Pięciu Stawów Polskich oraz Kasprowy Wierch, na który można wjechać kolejką linową.</p> 
+            
+           <p>KULTURA I TRADYCJE:</p> 
+           <p>Tatry są również ważnym miejscem dla kultury góralskiej, która ma swoje korzenie w pasterstwie i tradycjach ludowych. Górale tatrzańscy są znani z unikalnej muzyki, tańca, strojów oraz kuchni. Zakopane jest ośrodkiem kultury góralskiej, gdzie odbywają się liczne festiwale folklorystyczne i wydarzenia kulturalne.</p> 
+            
+           <p> OCHRONA PRZYRODY:</p>
+           <p>Z uwagi na wyjątkowe walory przyrodnicze i krajobrazowe, Tatry są obszarem chronionym. Zarówno Tatrzański Park Narodowy (TPN) w Polsce, jak i TANAP na Słowacji, prowadzą liczne działania na rzecz ochrony przyrody, edukacji ekologicznej oraz zarządzania turystyką, aby zachować to wyjątkowe dziedzictwo dla przyszłych pokoleń.</p> 
+            <p>PODSUMOWANIE</p>
+            <p>Tatry są bez wątpienia jednym z najpiękniejszych i najbardziej fascynujących regionów górskich w Europie, oferującym niezliczone możliwości aktywnego wypoczynku i obcowania z przyrodą.</p>
+    </main>
+    <footer>
+        <p>&copy; 2024 Tymczasem w Tatrach</p>
+        <p>Imię i nazwisko: Grzegorz Świercz</p>
+        <p>Numer indeksu: 157677</p>
+        <p>Projekt strony internetowej wykonany w ramach zaliczenia przedmiotu MO: TIiSKwE na kierunku Energetyka.</p>
+        <div id="visitCounter">Odwiedzin: <span id="visitCount"></span></div>
+    <div id="timeSpent">Czas spędzony na stronie: <span id="timeOnPage"></span> sekund</div>
+    </footer>
+   
+    <script>
+
+   
+    document.addEventListener('DOMContentLoaded', function () {
+        // Wyświetlanie daty i czasu
+        function updateTime() {
+            const now = new Date();
+            const date = now.toLocaleDateString('pl-PL');
+            const time = now.toLocaleTimeString('pl-PL');
+            document.getElementById('date').textContent = date;
+            document.getElementById('time').textContent = time;
+        }
+        setInterval(updateTime, 1000);
+        updateTime(); 
+
+        let visitCount = localStorage.getItem('visitCount');
+        if (!visitCount) {
+            visitCount = 1;
+        } else {
+            visitCount = parseInt(visitCount) + 1;
+        }
+        localStorage.setItem('visitCount', visitCount);
+        document.getElementById('visitCount').textContent = visitCount;
+
+        // Czas spędzony na stronie
+        let timeOnPage = parseInt(sessionStorage.getItem('timeOnPage')) || 0;
+        setInterval(() => {
+            timeOnPage += 1;
+            sessionStorage.setItem('timeOnPage', timeOnPage);
+            document.getElementById('timeOnPage').textContent = timeOnPage;
+        }, 1000);
+    });
+        </script>
+
+    
+</body>
+</html>

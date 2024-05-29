@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria Obrazów z Komentarzami</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa;
+        }
+        .gallery {
+            max-width: 600px;
+            text-align: center;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .buttons {
+            margin: 10px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buttons button:hover {
+            background-color: #004d40;
+        }
+        .comment {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .nav-home {
+            margin-top: 20px;
+        }
+        .nav-home a {
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .nav-home a:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <div class="gallery">
+        <img id="gallery-image" src="image1.jpg" alt="Mountain Image">
+        <div class="comment" id="gallery-comment">Komentarz do pierwszego zdjęcia.</div>
+        <div class="buttons">
+            <button onclick="showFirst()">Pierwszy</button>
+            <button onclick="showPrev()">Poprzedni</button>
+            <button onclick="showNext()">Następny</button>
+            <button onclick="showLast()">Ostatni</button>
+        </div>
+    </div>
+    <div class="nav-home">
+        <a href="index.html">Strona Główna</a>
+    </div>
+
+    <script>
+        const images = [
+            { src: 'image1.jpg', comment: 'Widok z Orlej Perci o wschodzie słońca' },
+            { src: 'image2.jpg', comment: 'Szlak z Kasprowego Wierchu na Świnicę (zejście w dół to przełęcz Liliowe)' },
+            { src: 'image3.jpg', comment: 'Hala Gąsienicowa' },
+            { src: 'image4.jpg', comment: 'Dolina Pięciu Stawów Polskich' },
+            { src: 'image5.jpg', comment: 'Morskie Oko' },
+            { src: 'image6.jpg', comment: 'Podejście na Orlej Perci 1/2 (głównie szlak jest wyposażony w łańcuchy, klamry, czy jak na zdjęciu- drabiny)' },
+            { src: 'image7.jpg', comment: 'Podejście na Orlej Perci 2/2' },
+            { src: 'image8.jpg', comment: 'Widok z Kończystego Wierchu na Starorobociański Wierch' },
+            { src: 'image9.jpg', comment: 'Wysoka Turnia, widok z Ciemniaka (Czerwone Wierchy)' },
+            { src: 'image10.jpg', comment: 'Panorama Tatr z Gubałówki- na głównym planie "Śpiący rycerz" (Giewont)' }
+        ];
+
+        let currentIndex = 0;
+
+        function showImage(index) {
+            const imageElement = document.getElementById('gallery-image');
+            const commentElement = document.getElementById('gallery-comment');
+            imageElement.src = images[index].src;
+            commentElement.innerText = images[index].comment;
+        }
+
+        function showFirst() {
+            currentIndex = 0;
+            showImage(currentIndex);
+        }
+
+        function showPrev() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showImage(currentIndex);
+            }
+        }
+
+        function showNext() {
+            if (currentIndex < images.length - 1) {
+                currentIndex++;
+                showImage(currentIndex);
+            }
+        }
+
+        function showLast() {
+            currentIndex = images.length - 1;
+            showImage(currentIndex);
+        }
+
+        
+        showImage(currentIndex);
+    </script>
+
+
+
+
+
+</body>
+</html>
